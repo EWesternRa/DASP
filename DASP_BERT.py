@@ -128,7 +128,7 @@ def compute_bert_feats(
 
             # create tokenizer
             tokenizer = Tokenizer(WordLevel(unk_token="[UNK]"))
-            tokenizer.pre_tokenizer = Whitespace()  # 使用空格分词
+            tokenizer.pre_tokenizer = Whitespace()
 
             # use word level trainer
             token_trainer = WordLevelTrainer(
@@ -202,7 +202,6 @@ def compute_bert_feats(
 
         trainer.train()
 
-        # 转为Bert
         model = model.bert
 
         if save_model:
@@ -240,7 +239,7 @@ def compute_bert_feats(
             return_tensors="pt",
         )
 
-        # 计算embedding
+        # compute node embeddings
 
         num_batches = (
             int(len(dth_corpus) // out_batch_size + 1)
@@ -260,7 +259,7 @@ def compute_bert_feats(
                 embeddings = outputs.last_hidden_state[:, 0, :]
                 new_embeddings = torch.cat((new_embeddings, embeddings.cpu()), dim=0)
 
-        # 按num_nodes拆分
+        # split the embeddings by graphs
         node_embeddings.append(
             np.split(new_embeddings.numpy(), np.cumsum(num_nodes)[:-1])
         )
