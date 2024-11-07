@@ -30,7 +30,7 @@ The code is written in Python 3.8.18. The main requirement packages are:
 * pot==0.9.2
 
 And all the running package environments are listed in the `environment.yaml` file. You can build the environment by running the following command; note that the packages are redundant.
-**We recommend that you install the above packages manually.
+**We recommend that you install the above packages manually.**
 
 ```bash
 conda env create -f environment.yaml
