@@ -70,7 +70,9 @@ def compute_feats(
                     path_str = ",".join([str(all_labels[deep][gid][n]) for n in path])
                     graph_label_paths[gid][node].append(path_str)
                 # sort the simple paths from the same node
-                graph_label_paths[gid][node].sort()  # by default, sort by lexicographical order
+                graph_label_paths[gid][
+                    node
+                ].sort()  # by default, sort by lexicographical order
                 all_label_paths.append(graph_label_paths[gid][node])
 
             corpus.extend(all_label_paths)
@@ -226,11 +228,11 @@ def arg_parser():
     arg_parser = argparse.ArgumentParser()
 
     # DASP parameters
-    arg_parser.add_argument(
-        "--K",
+    arg_parser.add_argument("--K",
         type=int,
         default=3,
-        help="K for simple-path-tree")
+        help="K for simple-path-tree"
+    )
     arg_parser.add_argument(
         "--H",
         type=int,
@@ -239,33 +241,12 @@ def arg_parser():
     )
 
     # dataset parameters
-    arg_parser.add_argument("--dataset",
-        type=str,
-        default="MUTAG",
-        help="Dataset name")
-    arg_parser.add_argument(
-        "--data_path", type=str, default="datasets", help="Dataset path"
-    )
-    arg_parser.add_argument(
-        "--label_type",
-        type=str,
-        default="label",
-        help="Node label type, label or degree or uniform",
-    )
-    arg_parser.add_argument(
-        "--gridsearch", type=bool, default=True, help="Whether to perform grid search"
-    )
-    arg_parser.add_argument(
-        "--crossvalidation",
-        type=bool,
-        default=True,
-        help="Whether to perform cross validation",
-    )
-    arg_parser.add_argument(
-        "--random_state",
-        type=int,
-        default=42,
-        help="Random state")
+    arg_parser.add_argument("--dataset", type=str, default="MUTAG")
+    arg_parser.add_argument("--data_path", type=str, default="datasets")
+    arg_parser.add_argument("--label_type", type=str, default="label")
+    arg_parser.add_argument("--gridsearch", type=bool, default=True)
+    arg_parser.add_argument("--crossvalidation", type=bool, default=True)
+    arg_parser.add_argument("--random_state", type=int, default=42)
 
     # word2vec parameters
     arg_parser.add_argument("--size", type=int, default=16, help="Embedding size")

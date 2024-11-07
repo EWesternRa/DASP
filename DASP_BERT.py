@@ -440,13 +440,13 @@ def arg_parser():
     arg_parser.add_argument("--crossvalidation", type=bool, default=True)
     arg_parser.add_argument("--label_type", type=str, default="label")
 
-    # transformer parameters
+    # bert parameters
     arg_parser.add_argument("--size", type=int, default=64)
     arg_parser.add_argument("--layer", type=int, default=4)
     arg_parser.add_argument("--head", type=int, default=4)
     arg_parser.add_argument("--epoch", type=int, default=3)
     arg_parser.add_argument("--device", type=str, default="1,2,4")
-    arg_parser.add_argument("--save_model", type=bool, default=False)
+    arg_parser.add_argument("--save_model", action="store_true")
     
     # Other bert parameters such as 
     # batch size: the batch size for training, default is 64
